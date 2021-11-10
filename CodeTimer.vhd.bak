@@ -1,0 +1,117 @@
+library ieee;
+use ieee.std_logic_1164.All;
+entity CodeTimer is
+port (
+Timer    :out std_logic;
+
+q : out STD_Logic_VECTOR(3 downto 0);                   
+clk    :in  std_logic;                     -- Input clock
+Reset    :in  std_logic                      -- Input reset
+);
+end CodeTimer;
+
+
+ARCHITECTURE a OF GreyCodeTimer IS
+TYPE STATE_TYPE IS (s0, s1, s2, s3, S4, S5, S6, S7, S8, S9, S10, S11, S12);
+SIGNAL state: STATE_TYPE;
+
+BEGIN process (clk, Reset)
+
+begin 
+if (Reset ='0') then 
+		Timer <= '0';
+		q     <= "0000";
+
+		
+elsif
+(clk' EVENT AND clk ='1') THEN
+
+CASE state IS 
+
+when s0 =>
+
+state <= s1;
+q <= "0001";
+Timer <='0';
+
+when s1=>
+
+state <= s2;
+q <= "0010";
+Timer <='0';
+
+when s2=>
+
+state <= s3;
+q <= "0011";
+Timer <='0';
+
+when s3=>
+
+state <= s4;
+q <= "0100";
+Timer <='0';
+
+
+when s4=>
+
+state <= s5;
+q <= "0101";
+Timer <='0';
+
+
+when s5=>
+
+state <= s6;
+q <= "0110";
+Timer <='0';
+
+
+when s6=>
+
+state <= s7;
+q <= "0111";
+Timer <='0';
+
+
+when s7=>
+
+state <= s8;
+q <= "1000";
+Timer <='0';
+
+when s8=>
+
+state <= s9;
+q <= "1001";
+Timer <='0';
+
+when s9=>
+
+state <= s10;
+q <= "1010";
+Timer <='0';
+
+when s10=>
+
+state <= s11;
+q <= "1011";
+Timer <='0';
+
+when s11=>
+
+state <= s12;
+q <= "1100";
+Timer <='0';
+
+when s12=>
+
+state <= s0;
+q <= "0000";
+Timer <='0';
+
+end case;
+end if;
+end if;
+end process;
+end a; 
